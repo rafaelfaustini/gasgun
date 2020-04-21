@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using GTA;
 using GTA.UI;
-using System.Drawing;
-using GTA.Native;
 using GTA.Math;
+using GTA.Native;
 
 namespace gasgun
 {
     public class GasGun :Script
     {
         public Boolean Enabled { get; set; }
+        public static readonly Config config = new Config("scripts//GasGun.ini");
         public GasGun()
         {
             Enabled = false;
@@ -25,23 +21,22 @@ namespace gasgun
         }
         public void OnTick(object sender, EventArgs e)
         {
-            OnKeyDown();
+            OnKeyUp();
         }
-        public void OnKeyDown()
+        public void OnKeyUp()
         {
-            if (Game.IsControlJustPressed(GTA.Control.Attack) && Enabled && Game.Player.Character.Weapons.Current == WeaponHash.GrenadeLauncher)
+            Ped player = Game.Player.Character;
+            if (Game.IsControlJustPressed(GTA.Control.Attack) && Enabled && player.Weapons.Current == config.weapon && !player.IsReloading)
             {
-                int ammo = Game.Player.Character.Weapons.Current.Ammo;
+                int ammo = player.Weapons.Current.Ammo;
 
-                WeaponAsset bullet = WeaponHash.BZGas;
-
+                WeaponAsset bullet = config.bullet;
 
                 if (ammo > 0)
                 {
-                    Vector3 target = Game.Player.Character.Position + Game.Player.Character.ForwardVector * 45;
+                    Vector3 target = player.Position + player.ForwardVector * 45;
 
-                    World.ShootBullet(Game.Player.Character.Weapons.CurrentWeaponObject.Position, target, Game.Player.Character, bullet, 0, 1f);
-
+                    World.ShootBullet(player.Weapons.CurrentWeaponObject.Position, target, player, bullet, 0, config.bulletspeed);
 
                     Game.Player.Character.Weapons.Current.Ammo = 0;
 
@@ -54,14 +49,17 @@ namespace gasgun
             if(e.KeyCode == Keys.Scroll)
             {
                 Enabled = !Enabled;
-                string message = Enabled ? "enabled" : "disabled";
+                string message = Enabled ? "Enabled :)" : "Disabled";
                 Notification.Hide(0);
-                Notification.Show("Gasgun " + message);
+                
+                Notification.Show(NotificationIcon.Multiplayer,"Rafael Faustini", "GasGun", message, true);
                 if (Enabled)
                 {
-                    Game.Player.Character.Weapons.Give(WeaponHash.BZGas, 100, true, true);
-                    Game.Player.Character.Weapons.Give(WeaponHash.GrenadeLauncher, 100, true, true);
-
+                    Function.Call(Hash.GIVE_WEAPON_TO_PED, Game.Player, config.bullet, 100, true, false);
+                    if (config.giveweapon)
+                    {
+                        Game.Player.Character.Weapons.Give(config.weapon, 50, true, true);
+                    }
                 }
             }
         }
