@@ -3,17 +3,20 @@ using System.Windows.Forms;
 using GTA;
 using GTA.UI;
 using GTA.Math;
-using GTA.Native;
 
 namespace gasgun
 {
     public class GasGun :Script
     {
         public Boolean Enabled { get; set; }
-        public static readonly Config config = new Config("scripts//GasGun.ini");
+        public Config config { get; set; }
+        public Menu menu { get; set; }
         public GasGun()
         {
             Enabled = false;
+            config = new Config("scripts//GasGun.ini");
+            menu = new Menu(this);
+
             Tick += OnTick;
             KeyDown += OnKeyDown;
             Notification.Show("Gas Gun - By Rafael Faustini");
@@ -22,6 +25,7 @@ namespace gasgun
         public void OnTick(object sender, EventArgs e)
         {
             OnKeyUp();
+            menu.process();
         }
         public void OnKeyUp()
         {
@@ -48,19 +52,7 @@ namespace gasgun
         {
             if(e.KeyCode == Keys.Scroll)
             {
-                Enabled = !Enabled;
-                string message = Enabled ? "Enabled :)" : "Disabled";
-                Notification.Hide(0);
-                
-                Notification.Show(NotificationIcon.Multiplayer,"Rafael Faustini", "GasGun", message, true);
-                if (Enabled)
-                {
-                    Function.Call(Hash.GIVE_WEAPON_TO_PED, Game.Player, config.bullet, 100, true, false);
-                    if (config.giveweapon)
-                    {
-                        Game.Player.Character.Weapons.Give(config.weapon, 50, true, true);
-                    }
-                }
+                menu.toggle();
             }
         }
     }

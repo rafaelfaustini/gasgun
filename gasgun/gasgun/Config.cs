@@ -22,13 +22,13 @@ namespace gasgun
             #region Default Config Values
                 this.bulletspeed = 1f;
                 this.bulletforce = 45f;
-                this.weapon = WeaponHash.GrenadeLauncher;
+                this.weapon = WeaponHash.CompactGrenadeLauncher;
                 this.giveweapon = true;
                 this.bullet = 2694266206; // Bz Gas uint
             #endregion
             this.Load();
         }
-
+        
         private void Load()
         {
             try
@@ -36,7 +36,7 @@ namespace gasgun
                 ScriptSettings config = ScriptSettings.Load(filename);
 
                 #region Set Config Values
-                    weapon = (WeaponHash)System.Enum.Parse(typeof(WeaponHash), config.GetValue<String>("Configuration", "WeaponName", "GrenadeLauncher"));
+                    weapon = (WeaponHash)System.Enum.Parse(typeof(WeaponHash), config.GetValue<String>("Configuration", "WeaponName", "CompactGrenadeLauncher"));
                     bulletspeed *= config.GetValue<float>("Configuration", "BulletSpeedMultiplier", 1);
                     bulletforce *= config.GetValue<float>("Configuration", "BulletForceMultiplier", 1);
                     giveweapon = config.GetValue<Boolean>("Configuration", "GiveWeaponOnEnable", true);
