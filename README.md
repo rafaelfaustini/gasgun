@@ -9,4 +9,4 @@ Download latest version [here](https://github.com/rafaelfaustini/gasgun/releases
 Install [ScriptHookVDotNet](https://github.com/crosire/scripthookvdotnet) and place the dll file in the scripts folder
 
 ## Use
-To activate and deactivate the BzGas gun, press the Scroll Lock key
+To activate and deactivate the BzGas gun, press the <kbd>Scroll Lock</kbd> key
