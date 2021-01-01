@@ -1,8 +1,20 @@
-[Watch the video](https://i.imgur.com/gRahfoC.mp4)
 
-# GasGun
+ <h1 align="center">GasGun</h1>
 
-Grand Theft Auto V mod that when activated replaces the grenade launcher's grenades with bzgas.
+  <p align="center">
+Grand Theft Auto V mod that when activated replaces the grenade launcher's grenades with bzgas. <a href="https://i.imgur.com/gRahfoC.mp4">Watch the video</a>
+
+  </p>
+
+  <p align="center">
+     <a href="https://github.com/rafaelfaustini/gasgun/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/rafaelfaustini/gasgun?color=f44336" />
+    </a>
+     <a href="https://github.com/rafaelfaustini/gasgun/pulls">
+      <img alt="Issues" src="https://img.shields.io/github/issues-pr/rafaelfaustini/gasgun?color=f44336" />
+    </a>
+  </p>
+
 
 ## Instalation
 Download latest version [here](https://github.com/rafaelfaustini/gasgun/releases)<br>
