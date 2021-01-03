@@ -1,7 +1,7 @@
  <h1 align="center">GasGun</h1>
 
   <p align="center">
-Grand Theft Auto V mod that when activated replaces the grenade launcher's grenades with bzgas. <a href="https://i.imgur.com/gRahfoC.mp4">Watch the video</a>
+  Mod para Grand Theft Auto V que quando ativado substitui as granadas do lançador de granadas por bzgas (gás lacrimogênio).<a href="https://i.imgur.com/gRahfoC.mp4">Assista o vídeo</a>
 
   </p>
 
@@ -22,9 +22,9 @@ Grand Theft Auto V mod that when activated replaces the grenade launcher's grena
 
 ## Instalation
 
-Download latest version [here](https://github.com/rafaelfaustini/gasgun/releases)<br>
-Install [ScriptHookVDotNet](https://github.com/crosire/scripthookvdotnet) and place the dll file in the scripts folder
+Baixe a ultima versão [aqui](https://github.com/rafaelfaustini/gasgun/releases)<br>
+Instale [ScriptHookVDotNet](https://github.com/crosire/scripthookvdotnet) e coloque o arquivo .dll na pasta scripts
 
 ## Use
 
-To activate and deactivate the BzGas gun, press the <kbd>Scroll Lock</kbd> key
+Para ativar e desativar a arma de BzGas, pressione a tecla <kbd>Scroll Lock</kbd>
